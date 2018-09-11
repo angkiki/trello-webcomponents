@@ -19,7 +19,15 @@ trello-column {
   margin: 5px;
 }
 
-trello-column > input {
-  margin-top: 10px;
+.column-title-holder > input {
+  margin-top: 20px;
+  height: 18px;
   font-size: 18px;
+  width: 120px;
+}
+
+trello-column > button {
+  display: block;
+  width: 50px;
+  margin: 10px auto;
 }

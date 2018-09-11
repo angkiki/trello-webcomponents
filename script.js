@@ -1,17 +1,15 @@
-(function() {
-  console.log('hello world');
+document.addEventListener("DOMContentLoaded", function(event) {
+  var columnCounter = 0;
 
-  class SampleButton extends HTMLElement {
+  const COLUMNS_HOLDER = document.getElementById('column-holder');
+  const ADD_COLUMN_BUTTON = document.getElementById('add-column');
 
-    // after the "component mounts"
-    connectedCallback() {
-      this.addEventListener('click', this._onClick);
-    };
+  ADD_COLUMN_BUTTON.addEventListener('click', function() {
+    const NEW_COLUMN = document.createElement('trello-column');
+    NEW_COLUMN.setAttribute('class', 'trello-column-no-' + columnCounter);
+    COLUMNS_HOLDER.appendChild(NEW_COLUMN);
 
-    _onClick(event) {
-      alert('i am clicked');
-    };
-  };
+    columnCounter += 1;
+  });
 
-  window.customElements.define('sample-button', SampleButton);
-})();
+});
