@@ -6,6 +6,7 @@
       // binding of functions
       this.titleClick = this.titleClick.bind(this);
       this.inputBlur = this.inputBlur.bind(this);
+      this.addCard = this.addCard.bind(this);
       this.deleteColumn = this.deleteColumn.bind(this);
     };
 
@@ -18,16 +19,28 @@
       this.appendChild(COLUMN_TITLE_HOLDER);
 
       // DIV FOR HOLDING THE CARDS
+      const CARD_HOLDER = document.createElement("div");
+      CARD_HOLDER.setAttribute('class', 'column-cards-holder');
+      this.appendChild(CARD_HOLDER);
+
+      // BUTTONS GROUP
+      const BUTTONS_GROUP = document.createElement("div");
+      BUTTONS_GROUP.setAttribute('class', 'columns-buttons-group');
+
+      // ADD CARD BUTTON
+      const ADD_BUTTON = document.createElement("button");
+      ADD_BUTTON.textContent = "Add Card";
+      ADD_BUTTON.addEventListener('click', this.addCard);
+      BUTTONS_GROUP.appendChild(ADD_BUTTON);
 
       // DELETE BUTTON
       const DELETE_BUTTON = document.createElement("button");
       DELETE_BUTTON.textContent = "Delete";
       DELETE_BUTTON.addEventListener('click', this.deleteColumn);
+      BUTTONS_GROUP.appendChild(DELETE_BUTTON);
 
-      this.appendChild(DELETE_BUTTON);
+      this.appendChild(BUTTONS_GROUP);
     };
-
-    disconnectedCallback() {};
 
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
     //      event handlers
@@ -54,8 +67,17 @@
       // this.children[0] #=> <div class='column-title-holder'></div>
       this.children[0].removeChild(event.target);
       this.children[0].appendChild(this.createTitle(INPUT_VALUE));
-    }
+    };
 
+    // adding a card
+    addCard() {
+      const NEW_CARD = document.createElement('trello-card', "hello world");
+
+      // this.children[1] #=> <div class='column-cards-holder'></div>
+      this.children[1].appendChild(NEW_CARD);
+    };
+
+    // deleteing column
     deleteColumn(event) {
       this.parentNode.removeChild(this);
     };
@@ -72,17 +94,17 @@
       INPUT.addEventListener('blur', this.inputBlur);
 
       return INPUT;
-    }
+    };
 
     // creates the title tag
     createTitle(value = "Enter A Title") {
-      const TITLE = document.createElement("h3");
+      const TITLE = document.createElement("h1");
       TITLE.textContent = value;
       TITLE.addEventListener('click', this.titleClick);
 
       return TITLE;
-    }
-  }
+    };
+  };
 
   window.customElements.define('trello-column', TrelloColumn);
 })();
