@@ -10,10 +10,10 @@
       // binding of functions
       this.titleClick = this.titleClick.bind(this);
       this.descClick = this.descClick.bind(this);
-      this.createInput = this.createInput.bind(this);
       this.titleBlur = this.titleBlur.bind(this);
       this.descBlur = this.descBlur.bind(this);
       this.toggleDescription = this.toggleDescription.bind(this);
+      this.deleteCard = this.deleteCard.bind(this);
     };
 
     connectedCallback() {
@@ -24,6 +24,13 @@
       CARD_CONTENT_HOLDER.appendChild(this.createTitle());
       CARD_CONTENT_HOLDER.appendChild(this.createDesc());
       this.appendChild(CARD_CONTENT_HOLDER);
+
+      // BUTTON
+      const DELETE_BUTTON = document.createElement("button");
+      DELETE_BUTTON.textContent = "Delete";
+      DELETE_BUTTON.addEventListener('click', this.deleteCard);
+
+      this.appendChild(DELETE_BUTTON);
     };
 
 
@@ -89,6 +96,10 @@
         this.descriptionIsVisible = true;
         this.children[0].children[1].style.display = "block"
       }
+    };
+
+    deleteCard() {
+      this.parentNode.removeChild(this);
     };
 
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@

@@ -17,6 +17,7 @@ trello-column {
   height: auto;
   padding: 10px 40px 20px;
   margin: 5px;
+  width: 25%;
 }
 
 .column-title-holder > h1:hover {
@@ -46,6 +47,7 @@ trello-card {
   border-radius: 10px;
   padding: 5px 10px;
   margin: 15px auto;
+  width: 70%;
 }
 
 .card-contents-holder > input {
@@ -57,7 +59,7 @@ trello-card {
 .card-contents-holder > h4 {
   display: inline-block;
   text-decoration: underline;
-  margin: 0;
+  margin: 5px;
 }
 
 .card-contents-holder > p {

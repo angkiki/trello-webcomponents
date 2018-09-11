@@ -78,7 +78,7 @@
     };
 
     // deleteing column
-    deleteColumn(event) {
+    deleteColumn() {
       this.parentNode.removeChild(this);
     };
 
