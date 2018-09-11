@@ -1,0 +1,25 @@
+#control-bar > * {
+  display: inline-block;
+}
+
+/* @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@ */
+/*          trello column          */
+/* @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@ */
+
+#column-holder {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+trello-column {
+  border: 1px solid black;
+  display: block;
+  height: auto;
+  padding: 10px 40px 20px;
+  margin: 5px;
+}
+
+trello-column > input {
+  margin-top: 10px;
+  font-size: 18px;
+}
