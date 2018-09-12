@@ -41,40 +41,22 @@
       "columnId": 2
     },
     {
-      "title": "New Card",
-      "description": "Enter a Description",
-      "columnId": "2",
-      "id": 6
-    },
-    {
       "title": "New Card (1)",
       "description": "Enter a Description",
-      "columnId": "1",
+      "columnId": "2",
       "id": 7
     },
     {
       "title": "New Card (2)",
       "description": "Enter a Description",
       "columnId": "2",
-      "id": 8
-    },
-    {
-      "title": "New Card (3)",
-      "description": "Enter a Description",
-      "columnId": "2",
       "id": 9
     },
     {
-      "title": "New Card (4)",
-      "description": "Enter a Description",
-      "columnId": "1",
-      "id": 10
-    },
-    {
-      "title": "New Card (5)",
+      "title": "New Card",
       "description": "Enter a Description",
       "columnId": "2",
-      "id": 11
+      "id": 10
     }
   ]
 }

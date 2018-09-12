@@ -127,8 +127,6 @@
           })
         })
       }).then(response => {
-        console.log(response.headers);
-
         if (response.status === 201) {
           const NEW_CARD = document.createElement('trello-card');
           // this.children[1] #=> <div class='column-cards-holder'></div>
@@ -148,10 +146,10 @@
           "Content-Type": "application/json; charset=utf-8"
         }
       }).then(response => {
-        console.log("RES:", response);
+        if (response.status === 200) {
+          this.parentNode.removeChild(this);
+        }
       });
-
-      this.parentNode.removeChild(this);
     };
 
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@

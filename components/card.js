@@ -102,7 +102,17 @@
     };
 
     deleteCard() {
-      this.parentNode.removeChild(this);
+      const CARD_ID = this.getCardId(this.id);
+      fetch("http://localhost:3000/cards/" + CARD_ID, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      }).then(response => {
+        if (response.status === 200) {
+          this.parentNode.removeChild(this);
+        }
+      });
     };
 
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
@@ -141,6 +151,11 @@
 
       return INPUT;
     };
+
+    getCardId(fullId) {
+      fullId = fullId.split('');
+      return fullId[fullId.length - 1];
+    }
   };
 
   window.customElements.define('trello-card', TrelloCard);
