@@ -94,6 +94,7 @@
     addCard() {
       const COL_ID = this.id;
       var name = "New Card";
+      var newCardId = 0;
 
       fetch("http://localhost:3000/cards").then(r => r.json()).then(data => {
         var counter = 0;
@@ -105,6 +106,11 @@
             name = "New Card (" + duplicate + ")";
             counter = 0;
           };
+
+          if (data[counter].id > newCardId) {
+            newCardId = data[counter].id;
+          };
+
           counter += 1;
         };
         return name;
@@ -121,11 +127,14 @@
           })
         })
       }).then(response => {
+        console.log(response.headers);
+
         if (response.status === 201) {
           const NEW_CARD = document.createElement('trello-card');
           // this.children[1] #=> <div class='column-cards-holder'></div>
           this.children[1].appendChild(NEW_CARD);
           NEW_CARD.children[0].children[0].textContent = name;
+          NEW_CARD.setAttribute('id', 'card' + (newCardId + 1));
         }
       })
     };

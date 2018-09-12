@@ -93,7 +93,7 @@
       while (this.children[1].firstChild) {
           this.children[1].removeChild(this.children[1].firstChild);
       };
-      
+
       fetch("http://localhost:3000/columns").then(r => r.json()).then(data => {
         for (let i = 0; i < data.length; i++) {
           let newCol = document.createElement("trello-column");
@@ -116,6 +116,7 @@
 
           newCard.children[0].children[0].textContent = data[i].title;
           newCard.children[0].children[1].textContent = data[i].description;
+          newCard.setAttribute('id', 'card' + data[i].id);
         }
       });
     };
