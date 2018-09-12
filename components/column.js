@@ -66,10 +66,28 @@
     // on blur event handler for input tag
     inputBlur(event) {
       const INPUT_VALUE = event.target.value;
+      const COL_ID = this.id;
 
-      // this.children[0] #=> <div class='column-title-holder'></div>
-      this.children[0].removeChild(event.target);
-      this.children[0].appendChild(this.createTitle(INPUT_VALUE));
+      fetch("http://localhost:3000/columns").then(r => r.json()).then(data => {
+        var duplicate = false;
+        var oldColumnName = null;
+
+        for (let i = 0; i < data.length; i++) {
+          if (INPUT_VALUE === data[i].title) {
+            duplicate = true;
+          };
+
+          if (COL_ID == data[i].id) {
+            oldColumnName = data[i].title;
+          };
+        };
+
+        return duplicate ? oldColumnName : INPUT_VALUE;
+      }).then(result => {
+          // this.children[0] #=> <div class='column-title-holder'></div>
+          this.children[0].removeChild(event.target);
+          this.children[0].appendChild(this.createTitle(result));
+      })
     };
 
     // adding a card
