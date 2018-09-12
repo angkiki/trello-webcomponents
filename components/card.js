@@ -104,7 +104,7 @@
             body: JSON.stringify({
               title: result
             })
-          })
+          });
       })
 
     };
@@ -112,12 +112,23 @@
     // card description blur
     descBlur(event) {
       const INPUT_VALUE = event.target.value;
+      const CARD_ID = this.getCardId(this.id);
 
       // this.children[0] #=> <div class='card-contents-holder'></div>
       this.children[0].removeChild(event.target);
       const NEW_DESC = this.createDesc(INPUT_VALUE);
       NEW_DESC.style.display = "block";
       this.children[0].appendChild(NEW_DESC);
+
+      fetch("http://localhost:3000/cards/" + CARD_ID, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        body: JSON.stringify({
+          description: INPUT_VALUE
+        })
+      });
     };
 
     toggleDescription(event) {
