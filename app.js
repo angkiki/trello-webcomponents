@@ -14,9 +14,9 @@
     };
 
     connectedCallback() {
-      this.addEventListener("dragover", this.dragover);
-      this.addEventListener("dragenter", this.dragenter);
-      this.addEventListener("drop", this.drop);
+      // this.addEventListener("dragover", this.dragover);
+      // this.addEventListener("dragenter", this.dragenter);
+      // this.addEventListener("drop", this.drop);
       this.addEventListener("mousedown", this.mousedown);
 
       this.createControlBar();
@@ -72,16 +72,11 @@
 
     drop(event) {
       console.log("DROPPED:", event.target);
-      // console.log(this.children[1]);
-      // console.log("TO DROP:");
       console.log("DRAGGED:",this.draggedNode);
     };
 
     mousedown(event) {
-      // console.log(event.target.parentNode);
-      this.draggedNode = event.target.parentNode;
-      // console.log("-------")
-      console.log("Dragged: ", this.draggedNode);
+      this.draggedNode = event.target;
     };
 
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
@@ -100,6 +95,11 @@
           this.children[1].appendChild(newCol);
           newCol.setAttribute('id', data[i].id);
           newCol.children[0].children[0].textContent = data[i].title;
+
+          // attach dropping event handlers
+          newCol.addEventListener("dragover", this.dragover);
+          newCol.addEventListener("dragenter", this.dragenter);
+          newCol.addEventListener("drop", this.drop);
         };
       }).then(
         this.loadCards()
