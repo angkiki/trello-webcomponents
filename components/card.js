@@ -137,7 +137,7 @@
         this.children[0].children[1].style.display = "none"
       } else {
         this.descriptionIsVisible = true;
-        this.children[0].children[1].style.display = "block"
+        this.children[0].children[1].style.display = "inline-block"
       }
     };
 
