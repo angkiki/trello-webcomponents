@@ -116,7 +116,7 @@
 
           newCard.children[0].children[0].textContent = data[i].title;
           newCard.children[0].children[1].textContent = data[i].description;
-          newCard.setAttribute('id', 'card' + data[i].id);
+          newCard.setAttribute('id', 'card-' + data[i].id);
         }
       });
     };

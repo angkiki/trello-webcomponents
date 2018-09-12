@@ -87,6 +87,16 @@
           // this.children[0] #=> <div class='column-title-holder'></div>
           this.children[0].removeChild(event.target);
           this.children[0].appendChild(this.createTitle(result));
+
+          fetch("http://localhost:3000/columns/" + COL_ID, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({
+              title: result
+            })
+          })
       })
     };
 
@@ -132,7 +142,7 @@
           // this.children[1] #=> <div class='column-cards-holder'></div>
           this.children[1].appendChild(NEW_CARD);
           NEW_CARD.children[0].children[0].textContent = name;
-          NEW_CARD.setAttribute('id', 'card' + (newCardId + 1));
+          NEW_CARD.setAttribute('id', 'card-' + (newCardId + 1));
         }
       })
     };

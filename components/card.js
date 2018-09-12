@@ -74,10 +74,39 @@
     // card title blur
     titleBlur(event) {
       const INPUT_VALUE = event.target.value;
+      const CARD_ID = this.getCardId(this.id);
 
-      // this.children[0] #=> <div class='card-contents-holder'></div>
-      this.children[0].removeChild(event.target);
-      this.children[0].insertBefore(this.createTitle(INPUT_VALUE), this.children[0].children[0]);
+      fetch("http://localhost:3000/cards").then(r => r.json()).then(data => {
+        var duplicate = false;
+        var oldCardName = null;
+
+        for (let i = 0; i < data.length; i++) {
+          if (INPUT_VALUE === data[i].title) {
+            duplicate = true;
+          };
+
+          if (CARD_ID == data[i].id) {
+            oldCardName = data[i].title;
+          };
+        };
+
+        return duplicate ? oldCardName : INPUT_VALUE;
+      }).then(result => {
+          // this.children[0] #=> <div class='card-contents-holder'></div>
+          this.children[0].removeChild(event.target);
+          this.children[0].insertBefore(this.createTitle(result), this.children[0].children[0]);
+
+          fetch("http://localhost:3000/cards/" + CARD_ID, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({
+              title: result
+            })
+          })
+      })
+
     };
 
     // card description blur
@@ -153,7 +182,7 @@
     };
 
     getCardId(fullId) {
-      fullId = fullId.split('');
+      fullId = fullId.split('-');
       return fullId[fullId.length - 1];
     }
   };
