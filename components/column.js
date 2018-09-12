@@ -92,10 +92,42 @@
 
     // adding a card
     addCard() {
-      const NEW_CARD = document.createElement('trello-card');
+      const COL_ID = this.id;
+      var name = "New Card";
 
-      // this.children[1] #=> <div class='column-cards-holder'></div>
-      this.children[1].appendChild(NEW_CARD);
+      fetch("http://localhost:3000/cards").then(r => r.json()).then(data => {
+        var counter = 0;
+        var duplicate = 0;
+
+        while (counter < data.length) {
+          if (data[counter].title === name) {
+            duplicate += 1;
+            name = "New Card (" + duplicate + ")";
+            counter = 0;
+          };
+          counter += 1;
+        };
+        return name;
+      }).then(result => {
+        return fetch("http://localhost:3000/cards", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8"
+          },
+          body: JSON.stringify({
+            title: name,
+            description: "Enter a Description",
+            columnId: COL_ID
+          })
+        })
+      }).then(response => {
+        if (response.status === 201) {
+          const NEW_CARD = document.createElement('trello-card');
+          // this.children[1] #=> <div class='column-cards-holder'></div>
+          this.children[1].appendChild(NEW_CARD);
+          NEW_CARD.children[0].children[0].textContent = name;
+        }
+      })
     };
 
     // deleteing column
@@ -126,9 +158,9 @@
 
       return INPUT;
     };
-
-    // creates the title tag
-    createTitle(value = "Enter A Title") {
+    //
+    // // creates the title tag
+    createTitle(value) {
       const TITLE = document.createElement("h1");
       TITLE.textContent = value;
       TITLE.addEventListener('click', this.titleClick);

@@ -119,7 +119,7 @@
     };
 
     // create card description
-    createDesc(value = "Enter Description") {
+    createDesc(value = "Enter a Description") {
       const DESC = document.createElement("p");
       DESC.textContent = value;
       DESC.addEventListener('click', this.descClick);
