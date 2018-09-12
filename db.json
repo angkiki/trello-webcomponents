@@ -39,36 +39,6 @@
       "title": "Card 5",
       "description": "Suspendisse posuere ipsum at dui lacinia, ut faucibus lectus mollis.",
       "columnId": 2
-    },
-    {
-      "title": "New Card (1)",
-      "description": "Edited new card (1)",
-      "columnId": "2",
-      "id": 7
-    },
-    {
-      "title": "New Card (2)",
-      "description": "Enter a Description",
-      "columnId": "2",
-      "id": 9
-    },
-    {
-      "title": "New Card - Edited",
-      "description": "Enter a Description",
-      "columnId": "2",
-      "id": 10
-    },
-    {
-      "title": "New Card (3)",
-      "description": "Enter a Description",
-      "columnId": "1",
-      "id": 11
-    },
-    {
-      "title": "New Card",
-      "description": "Enter a Description",
-      "columnId": "1",
-      "id": 12
     }
   ]
 }
