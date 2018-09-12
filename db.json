@@ -7,14 +7,6 @@
     {
       "id": 2,
       "title": "Column 2"
-    },
-    {
-      "title": "New Column",
-      "id": 3
-    },
-    {
-      "title": "New Column (1)",
-      "id": 4
     }
   ],
   "cards": [
@@ -22,7 +14,7 @@
       "id": 1,
       "title": "Card 1",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "columnId": 2
+      "columnId": 1
     },
     {
       "id": 2,
@@ -40,19 +32,13 @@
       "id": 4,
       "title": "Card 4",
       "description": "Quisque id scelerisque felis, sit amet scelerisque nunc.",
-      "columnId": 4
+      "columnId": 2
     },
     {
       "id": 5,
       "title": "Card 5",
       "description": "Suspendisse posuere ipsum at dui lacinia, ut faucibus lectus mollis.",
       "columnId": 2
-    },
-    {
-      "title": "Drag this!",
-      "description": "Enter a Description",
-      "columnId": 4,
-      "id": 6
     }
   ]
 }

@@ -11,16 +11,12 @@
       this.mousedown = this.mousedown.bind(this);
       this.addColumn = this.addColumn.bind(this);
       this.createControlBar = this.createControlBar.bind(this);
+      this.searchCards = this.searchCards.bind(this);
     };
 
     connectedCallback() {
-      // this.addEventListener("dragover", this.dragover);
-      // this.addEventListener("dragenter", this.dragenter);
-      // this.addEventListener("drop", this.drop);
       this.addEventListener("mousedown", this.mousedown);
-
       this.createControlBar();
-
       // populate data
       this.loadData();
     }
@@ -94,12 +90,21 @@
           }
         }
       })
-      // console.log("DROP THIS CARD:", this.draggedNode);
-      // console.log("INTO THIS COL:", this.findTrelloColumn(event.target));
     };
 
     mousedown(event) {
       this.draggedNode = this.findTrelloCard(event.target);
+    };
+
+    searchCards(event) {
+      var queryURL = "http://localhost:3000/cards"
+
+      if (event.target.value !== "") {
+        queryURL = queryURL + "?q=" + event.target.value;
+      }
+
+      this.loadData(queryURL);
+      event.target.value = "";
     };
 
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
@@ -107,8 +112,7 @@
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
 
     // loading of columns from db
-    loadData() {
-      console.log("HELLO!");
+    loadData(cardQuery = null) {
       while (this.children[1].firstChild) {
           this.children[1].removeChild(this.children[1].firstChild);
       };
@@ -125,14 +129,18 @@
           newCol.addEventListener("dragenter", this.dragenter);
           newCol.addEventListener("drop", this.drop);
         };
-      }).then(
-        this.loadCards()
-      );
+      }).then( () => {
+        if (cardQuery !== null) {
+          this.loadCards(cardQuery);
+        } else {
+          this.loadCards();
+        }
+      });
     };
 
     // loading of cards from db
-    loadCards() {
-      fetch("http://localhost:3000/cards").then(r => r.json()).then(data => {
+    loadCards(query = "http://localhost:3000/cards") {
+      fetch(query).then(r => r.json()).then(data => {
         for (let i = 0; i < data.length; i++) {
           let col = document.getElementById(data[i].columnId);
           let newCard = document.createElement('trello-card');
@@ -161,6 +169,12 @@
       BUTTON.setAttribute('id', 'add-column');
       BUTTON.textContent = "Add Column";
       BUTTON.addEventListener('click', this.addColumn);
+
+      const SEARCH = document.createElement('input');
+      CONTROL_BAR.appendChild(SEARCH);
+      SEARCH.setAttribute('id', 'search');
+      SEARCH.setAttribute('placeholder', 'Enter Search Keyword');
+      SEARCH.addEventListener('blur', this.searchCards);
 
       const COLUMN_HOLDER = document.createElement('div');
       COLUMN_HOLDER.setAttribute('id', 'trello-column-holder');

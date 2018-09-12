@@ -30,6 +30,13 @@ body {
   cursor: pointer;
 }
 
+#control-bar > #search {
+  margin-left: 20px;
+  font-size: 20px;
+  padding: 10px 30px;
+  border-radius: 10px;
+}
+
 /* @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@ */
 /*          trello column          */
 /* @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@ */
