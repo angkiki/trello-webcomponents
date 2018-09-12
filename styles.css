@@ -7,7 +7,7 @@ body {
   width: 100%;
   background-color: #7399c6;
   margin-bottom: 20px;
-  padding: 15px 0;
+  padding: 15px 50px;
   color: white;
   font-size: 22px;
 }
@@ -34,7 +34,7 @@ body {
 /*          trello column          */
 /* @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@ */
 
-#column-holder {
+#trello-column-holder {
   display: flex;
   flex-flow: row wrap;
 }
