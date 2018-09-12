@@ -71,12 +71,35 @@
     };
 
     drop(event) {
-      console.log("DROPPED:", event.target);
-      console.log("DRAGGED:",this.draggedNode);
+      const COL_ID = parseInt(this.findTrelloColumn(event.target).id);
+      const CARD_ID = this.getCardId(this.draggedNode.id);
+
+      fetch("http://localhost:3000/cards").then(r => r.json()).then(data => {
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].id == CARD_ID && data[i].columnId != COL_ID) {
+            fetch("http://localhost:3000/cards/" + CARD_ID, {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8"
+              },
+              body: JSON.stringify({
+                columnId: parseInt(COL_ID)
+              })
+            }).then(response => {
+                if (response.status === 200) {
+                  this.loadData();
+                  return;
+                }
+            })
+          }
+        }
+      })
+      // console.log("DROP THIS CARD:", this.draggedNode);
+      // console.log("INTO THIS COL:", this.findTrelloColumn(event.target));
     };
 
     mousedown(event) {
-      this.draggedNode = event.target;
+      this.draggedNode = this.findTrelloCard(event.target);
     };
 
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
@@ -85,6 +108,7 @@
 
     // loading of columns from db
     loadData() {
+      console.log("HELLO!");
       while (this.children[1].firstChild) {
           this.children[1].removeChild(this.children[1].firstChild);
       };
@@ -141,6 +165,42 @@
       const COLUMN_HOLDER = document.createElement('div');
       COLUMN_HOLDER.setAttribute('id', 'trello-column-holder');
       this.appendChild(COLUMN_HOLDER);
+    };
+
+    // to return the entire trello-card element
+    findTrelloCard(target) {
+      var node = target;
+
+      while(node.tagName !== "TRELLO-CARD") {
+        node = node.parentNode;
+
+        if (node.tagName === "BODY") {
+          return null;
+        };
+      }
+
+      return node;
+    };
+
+    // to return the entire trello-column element
+    findTrelloColumn(target) {
+      var node = target;
+
+      while(node.tagName !== "TRELLO-COLUMN") {
+        node = node.parentNode;
+
+        if (node.tagName === "BODY") {
+          return;
+        };
+      };
+
+      return node;
+    };
+
+    // return the number for card id
+    getCardId(fullId) {
+      fullId = fullId.split('-');
+      return fullId[fullId.length - 1];
     };
   };
 

@@ -192,6 +192,7 @@
       return INPUT;
     };
 
+    // return the number for card id
     getCardId(fullId) {
       fullId = fullId.split('-');
       return fullId[fullId.length - 1];
