@@ -1,4 +1,4 @@
-var db = {
+{
   "columns": [
     {
       "id": 1,
@@ -41,4 +41,4 @@ var db = {
       "columnId": 2
     }
   ]
-};
+}

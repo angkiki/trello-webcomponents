@@ -3,11 +3,18 @@
     constructor() {
       super();
 
+      // global variable
+      this.draggedNode = null;
+
       // binding of functions
       this.titleClick = this.titleClick.bind(this);
       this.inputBlur = this.inputBlur.bind(this);
       this.addCard = this.addCard.bind(this);
       this.deleteColumn = this.deleteColumn.bind(this);
+      // this.dragover = this.dragover.bind(this);
+      // this.dragenter = this.dragenter.bind(this);
+      // this.drop = this.drop.bind(this);
+      // this.mousedown = this.mousedown.bind(this);
     };
 
     connectedCallback() {
@@ -40,6 +47,12 @@
       BUTTONS_GROUP.appendChild(DELETE_BUTTON);
 
       this.appendChild(BUTTONS_GROUP);
+
+      // setting event listerners for drag and drop
+      // this.addEventListener("dragover", this.dragover);
+      // this.addEventListener("dragenter", this.dragenter);
+      // this.addEventListener("drop", this.drop);
+      // CARD_HOLDER.addEventListener("mousedown", this.mousedown);
     };
 
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
@@ -71,7 +84,7 @@
 
     // adding a card
     addCard() {
-      const NEW_CARD = document.createElement('trello-card', "hello world");
+      const NEW_CARD = document.createElement('trello-card');
 
       // this.children[1] #=> <div class='column-cards-holder'></div>
       this.children[1].appendChild(NEW_CARD);
@@ -81,6 +94,30 @@
     deleteColumn() {
       this.parentNode.removeChild(this);
     };
+
+
+    // // drag and drop events
+    // dragover(event) {
+    //   event.preventDefault()
+    // };
+    //
+    // dragenter(event) {
+    //   event.preventDefault()
+    // };
+    //
+    // drop(event) {
+    //   console.log(this);
+    //   // console.log(this.children[1]);
+    //   // console.log("TO DROP:");
+    //   console.log(this.draggedNode);
+    // };
+    //
+    // mousedown(event) {
+    //   // console.log(event.target.parentNode);
+    //   this.draggedNode = event.target.parentNode;
+    //   // console.log("-------")
+    //   console.log("Dragged: ", this.draggedNode);
+    // };
 
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
     //      custom functions

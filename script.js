@@ -14,21 +14,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
   // POPULATING THE INDEX HTML WITH DB DATA
-  for (let i = 0; i < db.columns.length; i++) {
-    let newColumn = document.createElement("trello-column");
-    COLUMNS_HOLDER.appendChild(newColumn);
-    columnCounter += 1;
-
-    newColumn.setAttribute('class', 'trello-column-no-' + columnCounter);
-    newColumn.children[0].children[0].textContent = db.columns[i].title;
-
-    for (let j = 0; j < db.cards.length; j++) {
-      if (db.cards[j].columnId == db.columns[i].id) {
-        let newCard = document.createElement("trello-card");
-        newColumn.children[1].appendChild(newCard);
-        newCard.children[0].children[0].textContent = db.cards[j].title;
-        newCard.children[0].children[1].textContent = db.cards[j].description;
-      };
-    };
-  };
+  // for (let i = 0; i < db.columns.length; i++) {
+  //   let newColumn = document.createElement("trello-column");
+  //   COLUMNS_HOLDER.appendChild(newColumn);
+  //
+  //   newColumn.setAttribute('class', 'trello-column-no-' + columnCounter);
+  //   newColumn.children[0].children[0].textContent = db.columns[i].title;
+  //
+  //   for (let j = 0; j < db.cards.length; j++) {
+  //     if (db.cards[j].columnId == db.columns[i].id) {
+  //       let newCard = document.createElement("trello-card");
+  //       newColumn.children[1].appendChild(newCard);
+  //       newCard.children[0].children[0].textContent = db.cards[j].title;
+  //       newCard.children[0].children[1].textContent = db.cards[j].description;
+  //     };
+  //   };
+  //
+  //   columnCounter += 1;
+  // };
 });

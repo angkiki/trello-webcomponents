@@ -31,6 +31,9 @@
       DELETE_BUTTON.addEventListener('click', this.deleteCard);
 
       this.appendChild(DELETE_BUTTON);
+
+      // setting trello-card attribute
+      this.setAttribute('draggable', true);
     };
 
 
