@@ -11,10 +11,6 @@
       this.inputBlur = this.inputBlur.bind(this);
       this.addCard = this.addCard.bind(this);
       this.deleteColumn = this.deleteColumn.bind(this);
-      // this.dragover = this.dragover.bind(this);
-      // this.dragenter = this.dragenter.bind(this);
-      // this.drop = this.drop.bind(this);
-      // this.mousedown = this.mousedown.bind(this);
     };
 
     connectedCallback() {
@@ -47,12 +43,6 @@
       BUTTONS_GROUP.appendChild(DELETE_BUTTON);
 
       this.appendChild(BUTTONS_GROUP);
-
-      // setting event listerners for drag and drop
-      // this.addEventListener("dragover", this.dragover);
-      // this.addEventListener("dragenter", this.dragenter);
-      // this.addEventListener("drop", this.drop);
-      // CARD_HOLDER.addEventListener("mousedown", this.mousedown);
     };
 
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
@@ -92,32 +82,18 @@
 
     // deleteing column
     deleteColumn() {
+      const COL_ID = this.id;
+      fetch("http://localhost:3000/columns/" + COL_ID, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      }).then(response => {
+        console.log("RES:", response);
+      });
+
       this.parentNode.removeChild(this);
     };
-
-
-    // // drag and drop events
-    // dragover(event) {
-    //   event.preventDefault()
-    // };
-    //
-    // dragenter(event) {
-    //   event.preventDefault()
-    // };
-    //
-    // drop(event) {
-    //   console.log(this);
-    //   // console.log(this.children[1]);
-    //   // console.log("TO DROP:");
-    //   console.log(this.draggedNode);
-    // };
-    //
-    // mousedown(event) {
-    //   // console.log(event.target.parentNode);
-    //   this.draggedNode = event.target.parentNode;
-    //   // console.log("-------")
-    //   console.log("Dragged: ", this.draggedNode);
-    // };
 
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
     //      custom functions

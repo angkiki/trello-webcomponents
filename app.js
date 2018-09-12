@@ -90,6 +90,10 @@
 
     // loading of columns from db
     loadData() {
+      while (this.children[1].firstChild) {
+          this.children[1].removeChild(this.children[1].firstChild);
+      };
+      
       fetch("http://localhost:3000/columns").then(r => r.json()).then(data => {
         for (let i = 0; i < data.length; i++) {
           let newCol = document.createElement("trello-column");
@@ -104,10 +108,6 @@
 
     // loading of cards from db
     loadCards() {
-      while (this.children[1].firstChild) {
-          this.children[1].removeChild(this.children[1].firstChild);
-      };
-
       fetch("http://localhost:3000/cards").then(r => r.json()).then(data => {
         for (let i = 0; i < data.length; i++) {
           let col = document.getElementById(data[i].columnId);
