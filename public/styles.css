@@ -119,3 +119,9 @@ trello-card {
 .card-contents-holder > h4:hover, p:hover {
   cursor: pointer;
 }
+
+.card-contents-holder > textarea {
+  height: 50px;
+  width: 50;
+  font-size: 16px;
+}

@@ -17,6 +17,12 @@
       "columnId": 1
     },
     {
+      "id": 2,
+      "title": "Card 2",
+      "description": "Quisque et pellentesque sem.",
+      "columnId": 1
+    },
+    {
       "id": 3,
       "title": "Card 3",
       "description": "Nulla porttitor erat a sollicitudin volutpat.",
