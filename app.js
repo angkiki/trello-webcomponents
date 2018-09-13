@@ -98,13 +98,14 @@
 
     searchCards(event) {
       var queryURL = "http://localhost:3000/cards"
+      const SEARCH_BAR = document.getElementById('search');
 
-      if (event.target.value !== "") {
-        queryURL = queryURL + "?q=" + event.target.value;
+      if (SEARCH_BAR.value !== "") {
+        queryURL = queryURL + "?q=" + SEARCH_BAR.value;
       }
 
       this.loadData(queryURL);
-      event.target.value = "";
+      SEARCH_BAR.value = "";
     };
 
     // @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
@@ -174,7 +175,12 @@
       CONTROL_BAR.appendChild(SEARCH);
       SEARCH.setAttribute('id', 'search');
       SEARCH.setAttribute('placeholder', 'Enter Search Keyword');
-      SEARCH.addEventListener('blur', this.searchCards);
+
+      const SEARCH_BUTTON = document.createElement('button');
+      CONTROL_BAR.appendChild(SEARCH_BUTTON);
+      SEARCH_BUTTON.setAttribute('id', 'search-button');
+      SEARCH_BUTTON.addEventListener('click', this.searchCards);
+      SEARCH_BUTTON.textContent = 'Search';
 
       const COLUMN_HOLDER = document.createElement('div');
       COLUMN_HOLDER.setAttribute('id', 'trello-column-holder');
