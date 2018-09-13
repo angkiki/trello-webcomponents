@@ -5,7 +5,7 @@ body {
 #control-bar {
   display: block;
   width: 100%;
-  background-color: #7399c6;
+  background-color: #54C7FF;
   margin-bottom: 20px;
   padding: 15px 50px;
   color: white;
@@ -19,11 +19,11 @@ body {
 #control-bar > button {
   font-size: 16px;
   color: white;
-  background-color: black;
+  background-color: #2FE8A0;
   padding: 10px 20px;
   margin-left: 20px;
-  border: 2px solid white;
   border-radius: 10px;
+  border: none;
 }
 
 #control-bar > button:hover {
@@ -37,6 +37,11 @@ body {
   border-radius: 10px;
 }
 
+#control-bar > #search-button {
+  background-color: #2FE8A0;
+  font-size: 20px;
+}
+
 /* @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@ */
 /*          trello column          */
 /* @@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@ */
@@ -47,12 +52,13 @@ body {
 }
 
 trello-column {
-  border: 1px solid black;
+  border-radius: 15px;
   display: block;
   height: auto;
   padding: 10px;
   margin: 5px;
   width: 25%;
+  background-color: #5EFF40;
 }
 
 .column-title-holder > h1 {
@@ -86,7 +92,7 @@ trello-column {
 trello-card {
   display: block;
   border: 1px solid black;
-  /* border-radius: 10px; */
+  background-color: #FFCD50;
   padding: 5px 10px;
   margin: 1px auto;
   width: 90%;

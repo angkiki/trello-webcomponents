@@ -7,6 +7,10 @@
     {
       "id": 2,
       "title": "Column 2"
+    },
+    {
+      "title": "Completed Stuff",
+      "id": 3
     }
   ],
   "cards": [
@@ -39,6 +43,12 @@
       "title": "Card 5",
       "description": "Suspendisse posuere ipsum at dui lacinia, ut faucibus lectus mollis.",
       "columnId": 2
+    },
+    {
+      "title": "Card 3 Stuff",
+      "description": "Enter a Description",
+      "columnId": 3,
+      "id": 6
     }
   ]
 }
