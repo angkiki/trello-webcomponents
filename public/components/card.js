@@ -178,18 +178,24 @@
     };
 
     // create input, 2nd argument is to determine
-    // which event handler to attach
+    // which event handler to attach and whether
+    // create a input or textarea
     createInput(value, type) {
-      const INPUT = document.createElement("input");
-      INPUT.setAttribute('type', 'text');
-      INPUT.setAttribute('value', value);
+      if (type === "title") {
+        var blurFunc = this.titleBlur
+        var input = document.createElement("input");
+        input.setAttribute('type', 'text');
+        input.setAttribute('value', value);
+      } else if (type === "desc") {
+        var blurFunc = this.descBlur
+        var input = document.createElement("textarea");
+        input.setAttribute('type', 'text');
+        input.textContent = value;
+      };
 
-      if (type === "title") { var blurFunc = this.titleBlur };
-      if (type === "desc") { var blurFunc = this.descBlur };
+      input.addEventListener('blur', blurFunc);
 
-      INPUT.addEventListener('blur', blurFunc);
-
-      return INPUT;
+      return input;
     };
 
     // return the number for card id
